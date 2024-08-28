@@ -1,0 +1,42 @@
+class Program
+{
+    private class Menu
+    {
+        public int id { get; set; }
+        public string nombre { get; set; }
+        public float precio { get; set; }
+
+        public static List<Menu> productos = new List<Menu>();
+
+        public static void ListaProductos()
+        {
+            productos.Add(new Menu { id = 1111 , nombre = "Bebida", precio = 5500f });
+            productos.Add(new Menu { id = 1112 , nombre = "Corriente", precio = 15000f });
+            productos.Add(new Menu { id = 1113 , nombre = "Porcion 1", precio = 3000f });
+            productos.Add(new Menu { id = 1114 , nombre = "Porción 2", precio = 5500f });
+        }
+
+        public static void VerListaProductos() 
+        {
+            Console.WriteLine("Productos:");
+            MostrarLista(productos);
+        }
+
+        private static void MostrarLista(List<Menu> lista)
+        {
+            for (int i = 0; i < lista.Count; i++)
+            {
+                Console.WriteLine($"[{i + 1}] {lista[i].id} {lista[i].nombre} - ${lista[i].precio}");
+            }
+        }            
+
+        public class Admin
+        {
+            private List<Menu> todosLosProductos = new List<Menu>();
+            public Menu BuscarProductoPorId(int id)
+            {
+                return productos.FirstOrDefault(m => m.id == id);
+            }
+        }
+    }
+}
